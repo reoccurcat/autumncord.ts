@@ -12,7 +12,7 @@ export class PingCommand extends Command {
     });
   }
   public async messageRun(message: Message) {
-    const msg = await message.channel.send('Hold on, getting the ping...');
+    const msg = await message.channel.send('Hold on, pinging now...');
 		const pingEmbed = new MessageEmbed()
 			.setColor('#5a1da1')
 			.setTitle('Ping')
