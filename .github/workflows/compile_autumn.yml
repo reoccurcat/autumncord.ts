@@ -86,5 +86,6 @@ jobs:
           repo_token: "${{ secrets.AUTUMNACTIONS_TOKEN }}"
           draft: true
           title: "AutumnCord Release v${{ env.VERSION }}"
+          automatic_release_tag: "latest"
         
       
