@@ -44,7 +44,7 @@ jobs:
       - name: Test startup
         run: npm run start
         
-  Compile_Test_Draft:
+  Compile_Test_Release:
     runs-on: ubuntu-latest
     if: "startsWith(github.event.head_commit.message, 'release:')"
     steps:
@@ -75,14 +75,14 @@ jobs:
         run: npm run start
 
       - name: Set current date as environment variable
-        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+        run: echo "NOW=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
         
       - name: Publish draft release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.AUTUMNACTIONS_TOKEN }}"
           draft: true
-          title: AutumnCord Release Draft ${{ env.NOW }}
+          title: AutumnCord Release Draft on ${{ env.NOW }}
           automatic_release_tag: "latest"
         
       
