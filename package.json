@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "@sapphire/framework": "^2.3.0",
+    "@sapphire/ts-config": "^3.1.6",
+    "discord.js": "^13.5.1",
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "name": "autumncord.ts",
+  "version": "0.0.1",
+  "description": "multipurpose bot written in sapphire",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js"   
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reoccurdevs/autumncord-ts.git"
+  },
+  "keywords": [
+    "discord-bot",
+    "discord"
+  ],
+  "author": "reoccurdevs",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/reoccurdevs/autumncord-ts/issues"
+  },
+  "homepage": "https://github.com/reoccurdevs/autumncord-ts#readme"
+}
