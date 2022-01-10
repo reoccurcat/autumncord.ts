@@ -23,7 +23,8 @@
   },
   "keywords": [
     "discord-bot",
-    "discord"
+    "discord",
+    "typescript"
   ],
   "author": "reoccurdevs",
   "license": "GPL-3.0-or-later",
