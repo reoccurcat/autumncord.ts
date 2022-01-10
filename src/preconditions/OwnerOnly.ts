@@ -3,7 +3,7 @@ import type { Message } from 'discord.js';
 
 export class OwnerOnlyPrecondition extends Precondition {
   public run(message: Message) {
-    return message.author.id === '834894431861473340'
+    return message.author.id === process.env.ownerID?.toString()
       ? this.ok()
       : this.error({ message: 'Only the bot owner can use this command!' });
   }
