@@ -11,10 +11,9 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  Compile_Test_Default:
+  Compile_and_Test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    if: "!startsWith(github.event.head_commit.message, 'release:')"
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -43,46 +42,18 @@ jobs:
         
       - name: Test startup
         run: npm run start
-        
-  Compile_Test_Draft:
-    runs-on: ubuntu-latest
-    if: "startsWith(github.event.head_commit.message, 'release:')"
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Setup node.js
-        uses: actions/setup-node@v2.5.1
-
-      - name: Install dependencies
-        run: npm install
-       
-      - name: Create envfile
-        env:
-          TOKEN: ${{ secrets.BOT_TOKEN }}
+  
+      - name: Add current date as environment variable
+        if: "startsWith(github.event.head_commit.message, 'release:')"
         run: |
-          cd $GITHUB_WORKSPACE
-          touch .env
-          echo token=$TOKEN >> .env
-          echo ownerID="" >> .env
-          echo prefix="" >> .env
-          echo test=true >> .env
-          
-      - name: Compile TypeScript
-        run: npm run build
-        
-      - name: Test startup
-        run: npm run start
-
-      - name: Set current date as environment variable
-        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+          echo "NOW=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+          echo "NOW_SHORT=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
         
       - name: Publish draft release
         uses: "marvinpinto/action-automatic-releases@latest"
+        if: "startsWith(github.event.head_commit.message, 'release:')"
         with:
           repo_token: "${{ secrets.AUTUMNACTIONS_TOKEN }}"
           draft: true
-          title: "AutumnCord Release Draft ${NOW}"
-          automatic_release_tag: "latest"
-        
-      
+          title: AutumnCord Release Draft on ${{ env.NOW }}
+          automatic_release_tag: ${{ env.NOW_SHORT }}
