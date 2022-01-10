@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: AutumnActions
+name: AutumnCheck
 
 # Controls when the workflow will run
 on:
@@ -73,19 +73,16 @@ jobs:
         
       - name: Test startup
         run: npm run start
+
+      - name: Set current date as environment variable
+        run: echo "NOW::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
         
-      - name: Remove .env file
-        run: rm -r $GITHUB_WORKSPACE/.env
-        
-      - name: Get version
-        run: echo "VERSION=$(grep version .env | cut -d '=' -f2)" >> $GITHUB_ENV
-      
       - name: Publish draft release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.AUTUMNACTIONS_TOKEN }}"
           draft: true
-          title: "AutumnCord Release v${{ env.VERSION }}"
+          title: "AutumnCord Release Draft ${NOW}"
           automatic_release_tag: "latest"
         
       
