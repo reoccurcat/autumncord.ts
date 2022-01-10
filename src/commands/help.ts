@@ -19,7 +19,7 @@ export class HelpCommand extends Command {
             .setColor('#5a1da1')
             .setTitle('Help')
             .setDescription(`Here's a list of all of my commands:\n\n\`${this.container.stores.get("commands").map(command => command.name).join('`, `')}\``)
-            .setFooter({text: "You can send '${prefix}help [command name]' to get info on a specific command!"})
+            .setFooter({text: `You can send '${process.env.prefix}help [command name]' to get info on a specific command!`})
         return message.channel.send({embeds: [helpEmbed]})
     }
     const name = text.toLowerCase();
