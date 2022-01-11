@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/github/license/reoccurdevs/autumncord.ts)](https://github.com/reoccurdevs/autumncord.ts/blob/main/LICENSE)
 [![Commits](https://img.shields.io/github/commit-activity/m/reoccurdevs/autumncord.ts)](https://github.com/reoccurdevs/autumncord.ts/commits/main)
 ![Maintained](https://img.shields.io/maintenance/yes/2022)
+[![AutumnCheck](https://github.com/reoccurdevs/autumncord.ts/actions/workflows/compile_autumn.yml/badge.svg)](https://github.com/reoccurdevs/autumncord.ts/actions/workflows/compile_autumn.yml)
 
 # AutumnCord.ts
 ## Welcome to the official GitHub page of the AutumnCord.ts bot!
