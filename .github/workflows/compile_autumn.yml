@@ -45,10 +45,11 @@ jobs:
         
       - name: Merge to main
         run: |
-          git add -A
-          git commit -m test
           git checkout experimental
-          git merge -b origin/main
+          git pull 
+          git checkout main
+          git pull
+          git merge --no-ff --no-commit main
   
       - name: Add current date as environment variable
         if: "startsWith(github.event.head_commit.message, 'release:')"
