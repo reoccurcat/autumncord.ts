@@ -55,7 +55,7 @@ jobs:
           git fetch --unshallow
           git checkout main
           git pull
-          git merge --no-ff master -m "Automatically merging experimental to main"
+          git merge --no-ff main -m "Automatically merging experimental to main"
           git push
   
       - name: Add current date as environment variable
