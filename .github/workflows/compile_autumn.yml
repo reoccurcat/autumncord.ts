@@ -52,8 +52,8 @@ jobs:
           git merge origin/main --allow-unrelated-histories
           git checkout experimental
           git merge origin/experimental --allow-unrelated-histories
-          git merge -X ours main --allow-unrelated-histories
-          git push origin master --allow-unrelated-histories
+          git merge --allow-unrelated-histories -X ours main
+          git push origin master
           
   
       - name: Add current date as environment variable
