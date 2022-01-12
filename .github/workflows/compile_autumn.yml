@@ -19,8 +19,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          ref: "experimental"
 
       - name: Setup node.js
         uses: actions/setup-node@v2.5.1
@@ -44,19 +42,11 @@ jobs:
         
       - name: Test startup
         run: npm run start
-  
-      - name: Set git config
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "Github Actions"
         
       - name: Merge to main
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: experimental
-          target_branch: main
-          github_token: ${{ github.token }}
+        run: |
+          git checkout experimental
+          git merge origin/main
   
       - name: Add current date as environment variable
         if: "startsWith(github.event.head_commit.message, 'release:')"
