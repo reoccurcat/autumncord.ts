@@ -45,14 +45,14 @@ jobs:
         
       - name: Merge to main
         run: |
-          git config --local user.name 'reoccurcat via AutumnCheck'
+          git config --local user.name 'AutumnCheck'
           git config --local user.email reoccurcat@gmail.com
           git fetch
           git checkout experimental
           git merge --allow-unrelated-histories -s ours origin/main
           git checkout main
           git merge experimental
-          git push
+          git push -m "Merging commits from experimental to main"
           
   
       - name: Add current date as environment variable
