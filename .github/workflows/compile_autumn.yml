@@ -52,6 +52,8 @@ jobs:
           git merge --allow-unrelated-histories -s ours origin/main
           git checkout main
           git merge experimental
+          git commit -a
+          git push
           
   
       - name: Add current date as environment variable
