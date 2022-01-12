@@ -45,7 +45,7 @@ jobs:
         
       - name: Merge to main
         run: |
-          git config --local user.name reoccurcat via AutumnCheck
+          git config --local user.name 'reoccurcat via AutumnCheck'
           git config --local user.email reoccurcat@gmail.com
           git fetch
           git checkout main
