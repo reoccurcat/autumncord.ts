@@ -49,11 +49,11 @@ jobs:
           git config --local user.email reoccurcat@gmail.com
           git fetch
           git checkout main
-          git merge origin/main
+          git merge origin/main --allow-unrelated-histories
           git checkout experimental
-          git merge origin/experimental
-          git merge -X ours main
-          git push origin master
+          git merge origin/experimental --allow-unrelated-histories
+          git merge -X ours main --allow-unrelated-histories
+          git push origin master --allow-unrelated-histories
           
   
       - name: Add current date as environment variable
