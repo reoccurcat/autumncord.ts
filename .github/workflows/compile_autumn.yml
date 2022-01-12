@@ -50,6 +50,7 @@ jobs:
           git fetch
           git checkout main
           git checkout experimental
+          git reset --hard main
           git merge main --allow-unrelated-histories
           
   
