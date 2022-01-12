@@ -47,6 +47,7 @@ jobs:
         run: |
           git config --local user.email "reoccurcat@gmail.com"
           git config --local user.name "reoccurcat via AutumnCheck"
+          git checkout main
           git commit -m "Sync branch from experimental to master" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
