@@ -45,6 +45,7 @@ jobs:
         
       - name: Merge to main
         run: |
+          git fetch
           git checkout main
           git checkout experimental
           git merge main
