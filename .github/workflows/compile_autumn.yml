@@ -45,6 +45,7 @@ jobs:
   
       - name: Commit files
         run: |
+          cd $GITHUB_WORKSPACE
           git config --local user.email "reoccurcat@gmail.com"
           git config --local user.name "reoccurcat via AutumnCheck"
           git fetch
