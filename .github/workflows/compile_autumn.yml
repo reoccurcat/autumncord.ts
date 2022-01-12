@@ -6,7 +6,7 @@ name: AutumnCheck
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ experimental ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -42,6 +42,17 @@ jobs:
         
       - name: Test startup
         run: npm run start
+  
+      - name: Commit files
+        run: |
+          git config --local user.email "reoccurcat@gmail.com"
+          git config --local user.name "reoccurcat via AutumnCheck"
+          git commit -m "Sync branch from experimental to master" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.AUTUMNACTIONS_TOKEN }}
+          branch: "main"
   
       - name: Add current date as environment variable
         if: "startsWith(github.event.head_commit.message, 'release:')"
