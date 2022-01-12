@@ -51,14 +51,12 @@ jobs:
           git config --local user.name "Github Actions"
         
       - name: Merge to main
-        run: |
-          git status
-          git pull
-          git checkout main
-          git add .
-          git merge origin/main --no-edit
-          git push
-          git status
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: experimental
+          target_branch: main
+          github_token: ${{ github.token }}
   
       - name: Add current date as environment variable
         if: "startsWith(github.event.head_commit.message, 'release:')"
