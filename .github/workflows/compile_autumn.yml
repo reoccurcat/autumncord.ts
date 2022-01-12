@@ -48,14 +48,10 @@ jobs:
           git config --local user.name 'reoccurcat via AutumnCheck'
           git config --local user.email reoccurcat@gmail.com
           git fetch
-          git checkout main
-          git merge origin/main --allow-unrelated-histories
           git checkout experimental
-          git merge origin/experimental --allow-unrelated-histories
-          git merge --allow-unrelated-histories -X theirs main
+          git merge --allow-unrelated-histories -X ours origin/main
           git checkout main
-          git commit -a
-          git push main
+          git merge experimental
           
   
       - name: Add current date as environment variable
