@@ -45,6 +45,8 @@ jobs:
         
       - name: Merge to main
         run: |
+          git add -A
+          git commit -m test
           git checkout experimental
           git merge -b origin/main
   
