@@ -54,6 +54,19 @@ jobs:
           target_branch: main
           github_token: ${{ github.token }}
   
+      - name: Set git config
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Github Actions"
+        
+      - name: Merge to main
+        run: |
+          git fetch --unshallow
+          git checkout main
+          git pull
+          git merge --no-ff master -m "Automatically merging experimental to main"
+          git push
+  
       - name: Add current date as environment variable
         if: "startsWith(github.event.head_commit.message, 'release:')"
         run: |
