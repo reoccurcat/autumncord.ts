@@ -1,4 +1,4 @@
-[![Issues](https://img.shields.io/github/issues/reoccurdevs/autumncord.ts.svg?colorB=5e03fc)](https://github.com/reoccurdevs/autumncord.xyz/issues)
+[![Issues](https://img.shields.io/github/issues/reoccurdevs/autumncord.ts.svg?colorB=5e03fc)](https://github.com/reoccurdevs/autumncord.ts/issues)
 [![Site Status](https://img.shields.io/website?down_color=lightgrey&down_message=offline&up_color=purple&up_message=online&url=https%3A%2F%2Fautumncord.xyz)](https://autumncord.xyz)
 [![Stars](https://img.shields.io/github/stars/reoccurdevs/autumncord.ts?style=social)](https://github.com/reoccurdevs/autumncord.ts/stargazers)
 [![Discord](https://canary.discord.com/api/guilds/883472120083005441/widget.png?style=shield)](https://discord.gg/yATc4DJ69R)
