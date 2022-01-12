@@ -55,6 +55,7 @@ jobs:
           git status
           git pull
           git checkout main
+          git add .
           git merge origin/main --no-edit
           git push
           git status
