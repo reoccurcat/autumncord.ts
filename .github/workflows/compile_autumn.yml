@@ -46,7 +46,7 @@ jobs:
       - name: Merge to main
         run: |
           git checkout experimental
-          git pull
+          git fetch
           git merge "origin/main"
   
       - name: Add current date as environment variable
