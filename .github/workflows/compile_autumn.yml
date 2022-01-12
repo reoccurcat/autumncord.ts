@@ -52,7 +52,7 @@ jobs:
           git merge origin/main --allow-unrelated-histories
           git checkout experimental
           git merge origin/experimental --allow-unrelated-histories
-          git merge --allow-unrelated-histories -X ours main
+          git merge --allow-unrelated-histories -X theirs main
           git commit -a
           git push origin main
           
