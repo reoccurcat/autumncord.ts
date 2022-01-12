@@ -48,7 +48,7 @@ jobs:
           git checkout experimental
           git pull 
           git reset --hard origin/main
-          git merge origin/main
+          git push --force origin/main
           
   
       - name: Add current date as environment variable
