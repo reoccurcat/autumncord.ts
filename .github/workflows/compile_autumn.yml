@@ -48,7 +48,7 @@ jobs:
           git fetch
           git checkout main
           git checkout experimental
-          git merge main
+          git merge main --allow-unrelated-histories
           
   
       - name: Add current date as environment variable
