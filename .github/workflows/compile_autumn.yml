@@ -45,8 +45,12 @@ jobs:
       - name: Test startup
         run: npm run start
   
-
-      - name: Merge experimental with main
+      - name: Set git config
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Github Actions"
+        
+      - name: Merge to main
         uses: devmasx/merge-branch@master
         with:
           type: now
