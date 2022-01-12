@@ -46,7 +46,7 @@ jobs:
       - name: Merge to main
         run: |
           git checkout experimental
-          git merge "origin/main"
+          git merge -b origin/main
   
       - name: Add current date as environment variable
         if: "startsWith(github.event.head_commit.message, 'release:')"
