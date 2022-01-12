@@ -53,7 +53,7 @@ jobs:
       - name: Merge to main
         run: |
           git fetch --unshallow
-          git checkout main
+          git checkout experimental
           git pull
           git merge --no-ff main -m "Automatically merging experimental to main"
           git push
