@@ -47,9 +47,9 @@ jobs:
         run: |
           git checkout experimental
           git pull 
-          git checkout main
-          git pull
-          git merge --no-ff --no-commit main
+          git reset --hard origin main
+          git merge origin main
+          
   
       - name: Add current date as environment variable
         if: "startsWith(github.event.head_commit.message, 'release:')"
