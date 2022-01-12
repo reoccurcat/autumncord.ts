@@ -19,6 +19,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: "experimental"
 
       - name: Setup node.js
         uses: actions/setup-node@v2.5.1
@@ -43,16 +45,14 @@ jobs:
       - name: Test startup
         run: npm run start
   
-      - name: Commit files
-        run: |
-          git config --local user.email "reoccurcat@gmail.com"
-          git config --local user.name "reoccurcat via AutumnCheck"
-          git commit -m "Sync branch from experimental to master" -a
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+
+      - name: Merge experimental with main
+        uses: devmasx/merge-branch@master
         with:
-          github_token: ${{ secrets.AUTUMNACTIONS_TOKEN }}
-          branch: "main"
+          type: now
+          from_branch: experimental
+          target_branch: main
+          github_token: ${{ github.token }}
   
       - name: Add current date as environment variable
         if: "startsWith(github.event.head_commit.message, 'release:')"
