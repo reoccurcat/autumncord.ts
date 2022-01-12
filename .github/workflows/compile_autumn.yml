@@ -51,8 +51,8 @@ jobs:
           git checkout experimental
           git merge --allow-unrelated-histories -s ours origin/main
           git checkout main
-          git merge experimental
-          git push -m "Merging commits from experimental to main"
+          git merge experimental -m "Merging commits from experimental to main"
+          git push
           
   
       - name: Add current date as environment variable
