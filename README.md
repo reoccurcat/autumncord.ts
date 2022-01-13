@@ -8,7 +8,7 @@
 [![AutumnCheck](https://github.com/reoccurdevs/autumncord.ts/actions/workflows/compile_autumn.yml/badge.svg)](https://github.com/reoccurdevs/autumncord.ts/actions/workflows/compile_autumn.yml)
 
 # AutumnCord.ts
-## Welcome to the official GitHub page of the AutumnCord.ts bot!
+## Welcome to the official GitHub page of the AutumnCord bot!
 AutumnCord.ts is a bot formerly made in Python (reoccurcord) but now continued in TypeScript.
 If you find an issue, or have a feature suggestion, please let us know by opening an issue [here](https://github.com/reoccurdevs/autumncord.ts/issues).
 
