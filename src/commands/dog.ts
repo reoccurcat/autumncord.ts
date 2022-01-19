@@ -16,7 +16,8 @@ export class DogCommand extends Command {
     let customIdImage = Math.floor(Math.random() * 10000)
     let customIdDisable = Math.floor(Math.random() * 10000)
     let url: string 
-    const filter = (i: { customId: string; user: { id: any; }; }) => i.customId === String(customIdImage) || i.customId === String(customIdDisable)
+    const inituser = message.author
+    const filter = (i: { customId: string; user: { id: string; }; }) => i.customId === String(customIdImage) || i.customId === String(customIdDisable)
     const collector = message.channel.createMessageComponentCollector({ filter, time: 30000 });
     if (text !== "none") {url = `https://dog.ceo/api/breed/${text}/images/random`} else {url = 'https://dog.ceo/api/breeds/image/random'}
     let fetchedurl = JSON.parse(await (await axios.get(url, { responseType: 'arraybuffer' })).data)
@@ -50,14 +51,17 @@ export class DogCommand extends Command {
     );
     await msg.edit({content: "Woof!", embeds: [embed], files: [attachment], components: [dogimage]})
     collector.on('collect', async i => {
-      i.deferUpdate();
-      if (i.customId === String(customIdImage)) { 
-        if (text !== "none") {url = `https://dog.ceo/api/breed/${text}/images/random`} else {url = 'https://dog.ceo/api/breeds/image/random'}
-        fetchedurl = JSON.parse(await (await axios.get(url, { responseType: 'arraybuffer' })).data)
-        attachment = new MessageAttachment(fetchedurl.message, 'dog.png');
-        await msg.edit({embeds: [embed], files: [attachment], components: [dogimage]})
-      } else if (i.customId === String(customIdDisable)) {
-        await msg.edit({embeds: [embed], files: [attachment], components: [dogdisabled]})
+      if (i.user.id !== inituser.id) await i.reply({ content: 'This is not for you.', ephemeral: true });
+      else {
+        i.deferUpdate();
+        if (i.customId === String(customIdImage)) { 
+          if (text !== "none") {url = `https://dog.ceo/api/breed/${text}/images/random`} else {url = 'https://dog.ceo/api/breeds/image/random'}
+          fetchedurl = JSON.parse(await (await axios.get(url, { responseType: 'arraybuffer' })).data)
+          attachment = new MessageAttachment(fetchedurl.message, 'dog.png');
+          await msg.edit({embeds: [embed], files: [attachment], components: [dogimage]})
+        } else if (i.customId === String(customIdDisable)) {
+          await msg.edit({embeds: [embed], files: [attachment], components: [dogdisabled]})
+        }
       }
     });
     collector.on('end', () => {

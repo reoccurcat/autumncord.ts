@@ -17,8 +17,9 @@ export class CatCommand extends Command {
     let customIdImage = Math.floor(Math.random() * 10000)
     let customIdDisable = Math.floor(Math.random() * 10000)
     let url: string
+    const inituser = message.author
     var fetchedurl: BufferResolvable | Stream 
-    const filter = (i: { customId: string; user: { id: any; }; }) => i.customId === String(customIdImage) || i.customId === String(customIdDisable)
+    const filter = (i: { customId: string; user: { id: string; }; }) => i.customId === String(customIdImage) || i.customId === String(customIdDisable)
     const collector = message.channel.createMessageComponentCollector({ filter, time: 30000 });
     if (text !== "none") {url = `https://cataas.com/cat/${text}`} else {url = 'https://cataas.com/cat'}
     fetchedurl = await (await axios.get(url, { responseType: 'arraybuffer' })).data
@@ -52,14 +53,17 @@ export class CatCommand extends Command {
     );
     await msg.edit({content: "Meow!", embeds: [embed], files: [attachment], components: [catimage]})
     collector.on('collect', async i => {
-      i.deferUpdate();
-      if (i.customId === String(customIdImage)) { 
-        if (text !== "none") {url = `https://cataas.com/cat/${text}`} else {url = 'https://cataas.com/cat'}
-        fetchedurl = await (await axios.get(url, { responseType: 'arraybuffer' })).data
-        attachment = new MessageAttachment(fetchedurl, 'cat.png');
-        await msg.edit({embeds: [embed], files: [attachment], components: [catimage]})
-      } else if (i.customId === String(customIdDisable)) {
-        await msg.edit({embeds: [embed], files: [attachment], components: [catdisabled]})
+      if (i.user.id !== inituser.id) await i.reply({ content: 'This is not for you.', ephemeral: true });
+      else {
+        i.deferUpdate();
+        if (i.customId === String(customIdImage)) { 
+          if (text !== "none") {url = `https://cataas.com/cat/${text}`} else {url = 'https://cataas.com/cat'}
+          fetchedurl = await (await axios.get(url, { responseType: 'arraybuffer' })).data
+          attachment = new MessageAttachment(fetchedurl, 'cat.png');
+          await msg.edit({embeds: [embed], files: [attachment], components: [catimage]})
+        } else if (i.customId === String(customIdDisable)) {
+          await msg.edit({embeds: [embed], files: [attachment], components: [catdisabled]})
+        }
       }
     });
     collector.on('end', () => {
